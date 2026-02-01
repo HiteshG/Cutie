@@ -276,7 +276,7 @@ class InferenceCore:
                     if idx_mask:
                         this_mask = (mask == objects[mask_id]).type_as(pred_prob_no_bg)
                     else:
-                        this_mask = mask[tmp_id]
+                        this_mask = mask[mask_id]
                     if tmp_id > pred_prob_no_bg.shape[0]:
                         new_masks.append(this_mask.unsqueeze(0))
                     else:
