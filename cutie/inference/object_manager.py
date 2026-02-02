@@ -97,22 +97,6 @@ class ObjectManager:
             self.delete_objects(obj_id_to_be_deleted)
         return purge_activated, tmp_id_to_keep, obj_id_to_keep
 
-    def purge_selected_objects(self,
-                               obj_ids_to_remove: List[int]) -> (bool, List[int], List[int]):
-        # remove specific objects by their IDs
-        tmp_id_to_keep = []
-        obj_id_to_keep = []
-
-        for obj in self.obj_to_tmp_id:
-            if obj.id not in obj_ids_to_remove:
-                tmp_id_to_keep.append(self.obj_to_tmp_id[obj])
-                obj_id_to_keep.append(obj.id)
-
-        purge_activated = len(obj_ids_to_remove) > 0
-        if purge_activated:
-            self.delete_objects(obj_ids_to_remove)
-        return purge_activated, tmp_id_to_keep, obj_id_to_keep
-
     def tmp_to_obj_cls(self, mask) -> torch.Tensor:
         # remap tmp id cls representation to the true object id representation
         new_mask = torch.zeros_like(mask)
